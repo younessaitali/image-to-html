@@ -23,8 +23,7 @@ async function convertImage(image: Jimp): Promise< Result<string, Error>> {
   const options = {
     width: image.bitmap.width,
     height: image.bitmap.height,
-    c_ratio: 4,
-    color: true,
+    ratio: 4,
   }
 
 // characters to use in the output ordered by brightness
@@ -33,8 +32,14 @@ async function convertImage(image: Jimp): Promise< Result<string, Error>> {
 
 
 // resize the image for optimal performance
+     const  ratioX = 100 / options.width;
+    const  ratioY = 100 / options.height;
+    const  ratio = Math.min(ratioX, ratioY);
 
-  image.resize(Math.trunc(options.width * 0.2), Math.trunc(options.height * 0.2))
+    const  newWidth =  Math.round(options.width * ratio);
+    const  newHeight = Math.round(options.height * ratio);
+
+  image.resize(newWidth, newHeight)
 
   //   const html: Pixel[][] = []
 
@@ -54,7 +59,7 @@ async function convertImage(image: Jimp): Promise< Result<string, Error>> {
     html += '<p>'
 
     for (let i = 0; i < image.bitmap.width; i++) {
-      for (let c = 0; c < options.c_ratio; c++) {
+      for (let c = 0; c < options.ratio; c++) {
         const pixelColor = getPixelColor(image, i, j)
         const pixelIntensity = (pixelColor.r + pixelColor.g + pixelColor.b )
         const next = characters[Math.round(pixelIntensity / normalization)]

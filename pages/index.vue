@@ -26,11 +26,11 @@ const onChange = async (e: Event) => {
 </script>
 
 <template>
-    <main class="flex justify-center items-center flex-col">
+    <main class="flex justify-center items-center flex-col ">
         <h1>Choose an image file </h1>
         <input type="file" accept=".jpeg,.jpg,.png,image/jpeg,image/png" aria-label="upload image button"
             @change="onChange">
-        <div class="w-full px-28 bg-gray-500 text-[3px]" v-html="output" />
+        <div class="p-32 mt-16 border border-gray bg-gray-500  text-center text-[3px]" v-html="output" />
 
     </main>
 </template>
