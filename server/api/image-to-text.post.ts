@@ -23,7 +23,7 @@ async function convertImage(image: Jimp): Promise< Result<string, Error>> {
   const options = {
     width: image.bitmap.width,
     height: image.bitmap.height,
-    ratio: 4,
+    ratio: 5,
   }
 
 // characters to use in the output ordered by brightness
@@ -32,8 +32,8 @@ async function convertImage(image: Jimp): Promise< Result<string, Error>> {
 
 
 // resize the image for optimal performance
-     const  ratioX = 100 / options.width;
-    const  ratioY = 100 / options.height;
+     const  ratioX = 150 / options.width;
+    const  ratioY = 150 / options.height;
     const  ratio = Math.min(ratioX, ratioY);
 
     const  newWidth =  Math.round(options.width * ratio);
